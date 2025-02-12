@@ -9,9 +9,15 @@ $(document).on("keydown", function (e) {
     gameStart = false;
     let color = colorGenerator();
     $("#level-title").text("Level 1");
+    sequence=[];
+    userInput-[];
     sequence.push(color);
     animationsAndSound(color, 1);
     gameLogic();
+   
+  }
+  else if(gameStart === false && (e.key === "a" || e.key === "A")){
+    window.location.reload()
   }
 });
 
@@ -55,9 +61,12 @@ function gameLogic() {
       if (userInput[i] !== sequence[i]) {
         let game = "over";
         animationsAndSound(e.target.id, game);
-        gameStart = true;
+      
         $("#level-title").text("Game Over,Press A to Restart");
         sequence = [];
+        userInput =[];
+        level=1;
+        
 
         break;
       }
@@ -75,6 +84,8 @@ function gameLogic() {
         level++;
         $("#level-title").text("Level " + level);
       }
+      
+    
     }, 1000);
   });
 }
